@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header"><h3>{{$category[0]->categories->title}}</h3></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -25,15 +25,15 @@
                     </div>
                     <hr>
                     <main class="articles">
-                        @if(count($articles) > 0)
-                            @foreach ($articles as $article)
-                                <div class="panel panel-default item w3-btn" onclick="location.href = '{{$article->categories->title}}/{{$article->id}}'">
+                        @if(count($category) > 0)
+                            @foreach ($category as $article)
+                            <div class="panel panel-default item w3-btn" onclick="location.href = '{{$article->categories->title}}/{{$article->id}}'">
                                 <div class="panel-heading">
                                     <h5>{{$article->name}}</h5>
                                 </div>
                                 <hr>
                                 <div class="panel-body">
-                                    {{$article->categories->title}}
+                                    {{$article->description}}
                                 </div>
                             </div>
                             @endforeach

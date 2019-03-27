@@ -1,5 +1,48 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 
+.card {
+    width: 100%;
+}
+
+.links {
+    text-align: center;
+}
+
+.links > a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.item {
+    min-width: 80%;
+    max-width: 90%;
+    margin: 10px auto;
+}
+
+.articles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.article {
+    background-size: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.product {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+}
+
+.add{
+    
+}
 /*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors

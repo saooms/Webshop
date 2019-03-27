@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        {{-- <div class="col-md-8"> --}}
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
@@ -24,24 +24,31 @@
                         <a href="/Webshop/Webshop/public/ghost">ghost</a>
                     </div>
                     <hr>
-                    <main class="articles">
-                        @if(count($articles) > 0)
-                            @foreach ($articles as $article)
-                                <div class="panel panel-default item w3-btn" onclick="location.href = '{{$article->categories->title}}/{{$article->id}}'">
+                    <main class="article"> {{--style="background-image: url()">
+                        --}}
+                        <img src="{{asset('img/'.$article->categories->title. '.jpg')}}" alt="type">
+                        <div class="product">
+                            <div>
                                 <div class="panel-heading">
                                     <h5>{{$article->name}}</h5>
                                 </div>
                                 <hr>
                                 <div class="panel-body">
-                                    {{$article->categories->title}}
+                                    {{$article->description}}
                                 </div>
                             </div>
-                            @endforeach
-                        @endif
+                            <div>
+                                <div class="w3-right">
+                                    <h4>${{$article->price}}</h4>
+                                    <button class="w3-btn w3-yellow">add to card</button>
+                                </div>
+                            </div>
+                        </div>
+                    
                     </main>
                 </div>
             </div>
-        </div>
+        {{-- </div> --}}
     </div>
 </div>
 @endsection
