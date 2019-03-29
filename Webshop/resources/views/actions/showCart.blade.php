@@ -23,27 +23,39 @@
                     <a href="/Webshop/Webshop/public/ghost">ghost</a>
                 </div>
                 <hr>
-                <main class="article">
-                        @if(count($articles) > 0)
+                <main class="articles">
+                        @if($articles != 0)
                             @foreach ($articles as $article)
-                                <div class="panel panel-default item w3-btn" onclick="location.href = '{{$article->categories->title}}/{{$article->id}}'">
-                                    <div class="panel-heading">
-                                        <h5>{{$article->name}}</h5>
+                                <div class="w3-display-container">
+                                    <div class="panel panel-default item w3-btn" onclick="location.href = '{{$article['item']->categories->title}}/{{$article['item']->id}}'">
+                                        <div class="panel-heading">
+                                            <h5>{{$article['item']->name}}</h5>
+                                        </div>
+                                        <hr>
+                                        <div class="panel-body">
+                                            {{$article['item']->categories->title}}
+                                        </div>
+                                        
                                     </div>
-                                    <hr>
-                                    <div class="panel-body">
-                                        {{$article->categories->title}}
-                                    </div>
-                                    <div class="w3-display-right">
-                                        <div><button class="btn" onclick="location.href = '/Webshop/Webshop/public/add/{{$article->id}}'">+</button> <p style="text-align: center">{{$qty}}</p> <button class="btn" onclick="location.href = '/Webshop/Webshop/public/remove/{{$article->id}}'">-</button>
+                                    <div class="w3-display-right butts">
+                                        <div>
+                                            <button class="btn sec w3-hover-grey" onclick="location.href = '/Webshop/Webshop/public/add/{{$article['item']->id}}'">+</button> <p style="text-align: center">{{$article['QTY']}}</p> <button class="btn sec w3-hover-grey" onclick="location.href = '/Webshop/Webshop/public/remove/{{$article['item']->id}}'">-</button>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
+ 
+                        @else
+                        <p class="alert alert-primary">there are no items in your cart!</p>
+                                
                         @endif
                         </div>
                     </div>
                 
                 </main>
+            </div>
+            <div class="card-footer">
+                <p>total:</p>
             </div>
         </div>
     </div>

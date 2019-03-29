@@ -11,25 +11,39 @@ class Cart
     public $itemQTY = 0;
     public $totalPrice = 0;
 
-    // public function __CONSTRUCTOR(){
-
-    // }
+    public function __construct($old){
+        if($old){
+            $this->items = $old->items;
+            $this->itemQTY = $old->itemQTY;
+            $this->totalPrice = $old->totalPrice;
+        }
+    }
 
     public function add($id){
         $product = Articles::find($id);
-        array_push($this->items, $product);
-        $this->itemQTY = count($this->items);
+        $storedItem = ['QTY' => 0, 'price' => 0, 'item' => $product];
+        if($this->items){
+            if(array_key_exists($id, $this->items)){
+                $storedItem = $this->items[$id];
+            }
+        }
+        $storedItem['QTY']++;
+        $storedItem['price'] = $product->price * $storedItem['QTY'];
+        $this->items[$id] = $storedItem;
         $this->totalPrice += $product->price;
+        $this->itemQTY++; 
+        // array_push($this->items, $product);
+        // $this->itemQTY = count($this->items);
+        // $this->totalPrice += $product->price;
     }
 
     public function remove($id){
-        for ($i=0; $i < count($this->items); $i++) { 
-            $this->items = array_values($this->items);
-            if ($this->items[$i]->id == $id) {
-                unset($this->items[$i]);
-                $this->items = array_values($this->items);
-                break;
-            }
+
+        $this->items[$id]['QTY']--;
+        
+        if ($this->items[$id]['QTY'] <= 0){
+            unset($this->items[$id]);
         }
+            
     }
 }

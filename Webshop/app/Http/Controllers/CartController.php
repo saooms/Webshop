@@ -15,12 +15,14 @@ class CartController extends Controller
         // $value = session('key', 'perhaps');
 
         // $request->session()->put('key', $id);
-
-        $cart = (Session::has('cart'))? $request->session()->get('cart') : new Cart();
         
+        #we maken steeds een niew object aan, en als we er al een eerder hadden genven we die mee aan de constructor
+        #dit is gedaan om items te kunnen stacken
+        $oldCart = (Session::has('cart'))? $request->session()->get('cart') : null;
+        $cart = new Cart($oldCart);
         $cart->add($id);
         $request->session()->put('cart', $cart);
-        // $value = $request->session()->all();
+        // return $value = $request->session()->all();
         return redirect()->back();  
     }
 
@@ -28,14 +30,12 @@ class CartController extends Controller
         $cart = $request->session()->get('cart');
         $cart->remove($id);
         $request->session()->put('cart', $cart);
-        
         return redirect()->back();
     }
 
     public function show(Request $request){
         $cart = $request->session()->get('cart');
-        $articles = (Session::has('cart') & count($cart->items)>0)?  $cart->items : null;
-
+        $articles = (Session::has('cart') && count($cart->items)>0)?  $cart->items : null;
         return view('actions.showCart')->with('articles', $articles);
     }
 }

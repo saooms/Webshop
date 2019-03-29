@@ -40,9 +40,9 @@
                                 <h4>${{$article->price}}</h4>
                                 <button class="w3-btn w3-yellow" onclick="location.href = '/Webshop/Webshop/public/add/{{$article->id}}'">add to cart</button>
                             </div>
-                            @if ($qty > 0)
+                            @if ($item != null)
                                 <div class="w3-display-right">
-                                    <div><button class="btn" onclick="location.href = '/Webshop/Webshop/public/add/{{$article->id}}'">+</button> <p style="text-align: center">{{$qty}}</p> <button class="btn" onclick="location.href = '/Webshop/Webshop/public/remove/{{$article->id}}'">-</button>
+                                    <div><button class="btn" onclick="location.href = '/Webshop/Webshop/public/add/{{$article->id}}'">+</button> <p style="text-align: center">{{$item['QTY']}}</p> <button class="btn" onclick="location.href = '/Webshop/Webshop/public/remove/{{$article->id}}'">-</button>
                                 </div>
                             @endif
                             

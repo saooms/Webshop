@@ -23,14 +23,17 @@ class ArticleController extends Controller
     public function show(Request $request, $class, $id)
     {
         $article = Articles::Find($id);
-        $qty = 0;
+        $cartItem = null;
+
         if ($request->session()->has('cart')) {
-            foreach (($request->session()->get('cart'))->items as $item) {
-                if ($item->id == $id) {
-                    $qty++;
+            $cartItems = $request->session()->get('cart')->items;
+            
+            foreach ($cartItems as $item) {
+                if (array_search($item, $cartItems) == $id) {
+                    $cartItem = $cartItems[$id];
                 }
             }
         }
-        return view('actions.show')->with('article', $article)->with('qty', $qty);
+        return view('actions.show')->with('article', $article)->with('item', $cartItem);
     }
 }

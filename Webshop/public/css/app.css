@@ -43,6 +43,16 @@
 .description{
     margin: 10px;
 }
+
+.butts {
+    margin: 10px;
+    width: 34px;
+    text-align: center;
+}
+
+.sec {
+    width: 100%;
+}
 /*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
