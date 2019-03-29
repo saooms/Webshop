@@ -18,6 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/add/{id}', 'CartController@add');
+Route::get('cart', 'CartController@show');
+Route::get('/remove/{id}', 'CartController@remove');
 Route::get('/{class}', 'ArticleController@index');
 Route::get('/{class}/{id}', 'ArticleController@show');
 // Route::get('/fire', 'FireController@index');

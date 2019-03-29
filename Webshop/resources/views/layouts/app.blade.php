@@ -71,7 +71,7 @@
                                     </form>
                                 </div>
                             </li>
-                            <button class="w3-btn w3-yellow">cart</button>
+                            <button class="w3-btn w3-yellow" onclick="location.href = '/Webshop/Webshop/public/cart'">cart</button> 
                         @endguest
                     </ul>
                 </div>
