@@ -9,12 +9,25 @@ use Auth;
 
 class OrderController extends Controller
 {
-    public function show(Request $request){
+    public function index(Request $request){
         
-        $order = Orders::find(1)->orderDetails->find(2)->article;  
+        $orders = Auth::user()->orders;  
         
-        return $order;
+        return view('actions.showOrders')->with('orders', $orders);
+    }
 
+    public function show($id){
+        
+        $order = Orders::find($id);
+        
+        if ($order->user_id == Auth::user()->id) {
+            return view('actions.showOrder')->with('order', $order);
+        }
+        else {
+            return ("this is not yours...");
+        }
+        
+        // return view('actions.showOrders')->with('orders', $orders);
     }
 
     public function store(Request $request){
@@ -30,7 +43,7 @@ class OrderController extends Controller
             $orderDetails->price = $item['price'];
             $orderDetails->QTY = $item['QTY'];
             $orderDetails->orders_id = $order->id;
-            $orderDetails->articles_id = $item['item']->id;
+            $orderDetails->article_id = $item['item']->id;
             $orderDetails->save();
         }
         

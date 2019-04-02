@@ -25,7 +25,8 @@ Route::get('/order', function(){
     return View::make("actions.purchase");
  });
 Route::get('/purchase', 'OrderController@store');
-Route::get('/orders', 'OrderController@show');
+Route::get('/orders', 'OrderController@index');
+Route::get('/order/{id}', 'OrderController@show');
 Route::get('/{class}', 'ArticleController@index');
 Route::get('/{class}/{id}', 'ArticleController@show');
 
