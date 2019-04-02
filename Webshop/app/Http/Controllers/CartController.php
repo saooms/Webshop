@@ -35,7 +35,7 @@ class CartController extends Controller
 
     public function show(Request $request){
         $cart = $request->session()->get('cart');
-        $articles = (Session::has('cart') && count($cart->items)>0)?  $cart->items : null;
-        return view('actions.showCart')->with('articles', $articles);
+        // $articles = (Session::has('cart') && count($cart->items)>0)?  $cart->items : null;
+        return view('actions.showCart')->with('articles', $cart);
     }
 }

@@ -38,8 +38,11 @@ class Cart
     }
 
     public function remove($id){
-
+        $product = Articles::find($id);
+        
         $this->items[$id]['QTY']--;
+        $this->items[$id]['price'] = $product->price * $this->items[$id]['QTY'];
+        $this->totalPrice -= $product->price;
         
         if ($this->items[$id]['QTY'] <= 0){
             unset($this->items[$id]);

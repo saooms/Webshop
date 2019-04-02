@@ -21,16 +21,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/add/{id}', 'CartController@add');
 Route::get('cart', 'CartController@show');
 Route::get('/remove/{id}', 'CartController@remove');
+Route::get('/order', function(){
+    return View::make("actions.purchase");
+ });
+Route::get('/purchase', 'OrderController@store');
+Route::get('/orders', 'OrderController@show');
 Route::get('/{class}', 'ArticleController@index');
 Route::get('/{class}/{id}', 'ArticleController@show');
-// Route::get('/fire', 'FireController@index');
-// Route::get('/fire/{id}', 'FireController@show');
-// Route::get('/water', 'WaterController@index');
-// Route::get('/water/{id}', 'WaterController@show');
-// Route::get('/grass', 'GrassController@index');
-// Route::get('/grass/{id}', 'GrassController@show');
-// Route::get('/flight', 'FlightController@index');
-// Route::get('/flight/{id}', 'FlightController@show');
-// Route::get('/ghost', 'GhostController@index');
-// Route::get('/Ghost/{id}', 'GhostController@show');
 
