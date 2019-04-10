@@ -81,15 +81,15 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Pokeshop
                 </div>
 
                 <div class="links">
-                    <a href="/Webshop/Webshop/public/fire">fire</a>
-                    <a href="/Webshop/Webshop/public/water">water</a>
-                    <a href="/Webshop/Webshop/public/grass">grass</a>
-                    <a href="/Webshop/Webshop/public/flight">flight</a>
-                    <a href="/Webshop/Webshop/public/ghost">ghost</a>
+                    <a href="{{route('category', 'fire')}}">fire</a>
+                    <a href="{{route('category', 'water')}}">water</a>
+                    <a href="{{route('category', 'grass')}}">grass</a>
+                    <a href="{{route('category', 'flight')}}">flight</a>
+                    <a href="{{route('category', 'ghost')}}">ghost</a>
                 </div>
             </div>
         </div>

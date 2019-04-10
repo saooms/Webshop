@@ -16,18 +16,18 @@
                     @endif
                         
                     <div class="links">
-                        <a href="/Webshop/Webshop/public/home">all</a>
-                        <a href="/Webshop/Webshop/public/fire">fire</a>
-                        <a href="/Webshop/Webshop/public/water">water</a>
-                        <a href="/Webshop/Webshop/public/grass">grass</a>
-                        <a href="/Webshop/Webshop/public/flight">flight</a>
-                        <a href="/Webshop/Webshop/public/ghost">ghost</a>
+                        <a href="{{route('home')}}">all</a>
+                        <a href="{{route('category', 'fire')}}">fire</a>
+                        <a href="{{route('category', 'water')}}">water</a>
+                        <a href="{{route('category', 'grass')}}">grass</a>
+                        <a href="{{route('category', 'flight')}}">flight</a>
+                        <a href="{{route('category', 'ghost')}}">ghost</a>
                     </div>
                     <hr>
                     <main class="articles">
                         @if(count($articles) > 0)
                             @foreach ($articles as $article)
-                                <div class="panel panel-default item w3-btn" onclick="location.href = '{{$article->categories->title}}/{{$article->id}}'">
+                                <div class="panel panel-default item w3-btn" onclick="location.href = '{{route('article.show', [$article->categories->title, $article->id])}}'">
                                 <div class="panel-heading">
                                     <h5>{{$article->name}}</h5>
                                 </div>

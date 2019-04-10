@@ -9,11 +9,9 @@ use Illuminate\Support\Facades\Session;
 class Cart 
 {
     public $items = [];
-    public $itemQTY = 0;
-    public $totalPrice = 0;
 
-    #voor elk aparte item meken we een nieuwe array aan, anders kunnen we gewoon de 
-    #QTY verhogen van een betsaande array
+    /* voor elk aparte item maken we een nieuwe array aan, anders kunnen we gewoon de 
+     QTY verhogen van een betsaande array */
     public function add($id){
         $product = Articles::find($id);
         $storedItem = ['QTY' => 0, 'price' => 0, 'item' => $product];
@@ -46,9 +44,38 @@ class Cart
         Session::put('cart', $this);
     }
 
-    #we kijken of er al een cart bestaat, zo ja gebruiken we die, anders maken we er een nieuwe aan.
-    public static function get() {
-        $cart = (Session::has('cart'))?Session::get('cart') :new Cart();
-        return $cart;
+    private static function exist(){
+        $response = (Session::has('cart'))?true :false;
+        return $response;
+    }
+
+    //we kijken of er al een cart bestaat, zo ja gebruiken we die, anders maken we er een nieuwe aan.
+    //als er een id wordt mee gegeven willen we het individuele item meegeven. maar als basis zetten we hem op false
+    public static function get($id = false) {
+        if ($id) {
+            if  (Cart::exist()){
+                if (array_key_exists($id, Session::get('cart')->items)) {
+                    return Session::get('cart')->items[$id];
+                }
+                else {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+            
+        } else {
+            $cart = (Cart::exist())?Session::get('cart') :new Cart();
+            return $cart;
+        }
+    }
+
+    public static function totalPrice(){
+        $total = 0;
+        $items = Session::get('cart')->items;
+        foreach ($items as $item) {
+            $total += $item['price'];
+        }
+        return $total;
     }
 }

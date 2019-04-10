@@ -15,18 +15,18 @@
                 @endif
                     
                 <div class="links">
-                    <a href="/Webshop/Webshop/public/home">all</a>
-                    <a href="/Webshop/Webshop/public/fire">fire</a>
-                    <a href="/Webshop/Webshop/public/water">water</a>
-                    <a href="/Webshop/Webshop/public/grass">grass</a>
-                    <a href="/Webshop/Webshop/public/flight">flight</a>
-                    <a href="/Webshop/Webshop/public/ghost">ghost</a>
+                    <a href="{{route('home')}}">all</a>
+                    <a href="{{route('category', 'fire')}}">fire</a>
+                    <a href="{{route('category', 'water')}}">water</a>
+                    <a href="{{route('category', 'grass')}}">grass</a>
+                    <a href="{{route('category', 'flight')}}">flight</a>
+                    <a href="{{route('category', 'ghost')}}">ghost</a>
                 </div>
                 <hr>
                 <main class="">
                     @if($orders != null)
                         @foreach ($orders as $order)
-                            <button class="w3-btn" onclick="location.href = '/Webshop/Webshop/public/order/{{$order->id}}'">
+                            <button class="w3-btn" onclick="location.href = '{{route('orders.show',$order->id)}}'">
                                 <p>order NR: {{$order->id}}</p>
                                 <p>price: ${{$order->totalPrice}}</p>
                                 <hr>

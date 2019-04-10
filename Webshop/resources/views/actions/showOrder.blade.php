@@ -15,19 +15,19 @@
                 @endif
                     
                 <div class="links">
-                    <a href="/Webshop/Webshop/public/home">all</a>
-                    <a href="/Webshop/Webshop/public/fire">fire</a>
-                    <a href="/Webshop/Webshop/public/water">water</a>
-                    <a href="/Webshop/Webshop/public/grass">grass</a>
-                    <a href="/Webshop/Webshop/public/flight">flight</a>
-                    <a href="/Webshop/Webshop/public/ghost">ghost</a>
+                    <a href="{{route('home')}}">all</a>
+                    <a href="{{route('category', 'fire')}}">fire</a>
+                    <a href="{{route('category', 'water')}}">water</a>
+                    <a href="{{route('category', 'grass')}}">grass</a>
+                    <a href="{{route('category', 'flight')}}">flight</a>
+                    <a href="{{route('category', 'ghost')}}">ghost</a>
                 </div>
                 <hr>
                 <main class="articles">
                     @if($order != null)
                         @foreach ($order->orderDetails as $detail)
                             <div class="w3-display-container">
-                                <div class="panel panel-default item w3-btn" onclick="location.href = '/Webshop/Webshop/public/{{$detail->article->categories->title}}/{{$detail->article->id}}'">
+                                <div class="panel panel-default item w3-btn" onclick="location.href = '{{route('article.show', [$detail->article->categories->title,$detail->article->id])}}'">
                                     <div class="panel-heading">
                                         <h5>{{$detail->article->name}}</h5>
                                     </div>
@@ -36,7 +36,7 @@
                                         {{$detail->article->categories->title}}
                                     </div>
                                     <div class="card-footer">
-                                        <p>total: ${{$detail->article->price}} </p>
+                                        <p>total: ${{$detail->article->price * $detail->QTY}} </p>
                                     </div>
                                     
                                 </div>

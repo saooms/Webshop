@@ -18,15 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/add/{id}', 'CartController@add');
-Route::get('cart', 'CartController@show');
-Route::get('/remove/{id}', 'CartController@remove');
-Route::get('/order', function(){
+Route::get('/add/{id}', 'CartController@add')->name('add');
+Route::get('cart', 'CartController@show')->name('cart.show');
+Route::get('/remove/{id}', 'CartController@remove')->name('remove');
+Route::get('/placeOrder', function(){
     return View::make("actions.purchase");
- });
+ });    
 Route::get('/purchase', 'OrderController@store');
-Route::get('/orders', 'OrderController@index');
-Route::get('/order/{id}', 'OrderController@show');
-Route::get('/{class}', 'ArticleController@index');
-Route::get('/{class}/{id}', 'ArticleController@show');
+Route::get('/orders', 'OrderController@index')->name('orders.all');
+Route::get('/orders/{id}', 'OrderController@show')->name('orders.show');
+Route::get('/category/{class}', 'ArticleController@index')->name('category');
+Route::get('/category/{class}/{id}', 'ArticleController@show')->name('article.show');
 

@@ -15,19 +15,19 @@
                 @endif
                     
                 <div class="links">
-                    <a href="/Webshop/Webshop/public/home">all</a>
-                    <a href="/Webshop/Webshop/public/fire">fire</a>
-                    <a href="/Webshop/Webshop/public/water">water</a>
-                    <a href="/Webshop/Webshop/public/grass">grass</a>
-                    <a href="/Webshop/Webshop/public/flight">flight</a>
-                    <a href="/Webshop/Webshop/public/ghost">ghost</a>
+                    <a href="{{route('home')}}">all</a>
+                    <a href="{{route('category', 'fire')}}">fire</a>
+                    <a href="{{route('category', 'water')}}">water</a>
+                    <a href="{{route('category', 'grass')}}">grass</a>
+                    <a href="{{route('category', 'flight')}}">flight</a>
+                    <a href="{{route('category', 'ghost')}}">ghost</a>
                 </div>
                 <hr>
                 <main class="articles">
                     @if($articles != null)
                         @foreach ($articles->items as $article)
                             <div class="w3-display-container">
-                                <div class="panel panel-default item w3-btn" onclick="location.href = '{{$article['item']->categories->title}}/{{$article['item']->id}}'">
+                                <div class="panel panel-default item w3-btn" onclick="location.href = '{{route('article.show', [$article['item']->categories->title, $article['item']->id])}}'">
                                     <div class="panel-heading">
                                         <h5>{{$article['item']->name}}</h5>
                                     </div>
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="w3-display-right butts">
                                     <div>
-                                        <button class="btn sec w3-hover-grey" onclick="location.href = '/Webshop/Webshop/public/add/{{$article['item']->id}}'">+</button> <p style="text-align: center">{{$article['QTY']}}</p> <button class="btn sec w3-hover-grey" onclick="location.href = '/Webshop/Webshop/public/remove/{{$article['item']->id}}'">-</button>
+                                        <button class="btn sec w3-hover-grey" onclick="location.href = '{{route('add', $article['item']->id)}}'">+</button> <p style="text-align: center">{{$article['QTY']}}</p> <button class="btn sec w3-hover-grey" onclick="location.href = '{{route('remove', $article['item']->id)}}'">-</button>
                                     </div>
                                 </div>
                             </div>
@@ -56,9 +56,9 @@
             </div>
             <div class="card-footer w3-display-container">
                 @if($articles != null)
-                    <p class="w3-left">total: ${{$articles->totalPrice}}</p>
+                    <p class="w3-left">total: ${{$articles->totalPrice()}}</p>
 
-                    <button class="btn w3-yellow w3-display-right w3-hover-green" onclick="location.href = '/Webshop/Webshop/public/order'">purchase</button>
+                    <button class="btn w3-yellow w3-display-right w3-hover-green" onclick="location.href = '/Webshop/Webshop/public/placeOrder'">purchase</button>
                 @endif
             </div>
         </div>

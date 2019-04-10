@@ -60,7 +60,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/Webshop/Webshop/public/orders">
+                                    <a class="dropdown-item" href="{{route('orders.all')}}">
                                        Orders
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -77,7 +77,7 @@
                                     </form>
                                 </div>
                             </li>
-                            <button class="w3-btn w3-yellow" onclick="location.href = '/Webshop/Webshop/public/cart'">cart</button> 
+                            <button class="w3-btn w3-yellow" onclick="location.href = '{{route('cart.show')}}'">cart</button> 
                         @endguest
                     </ul>
                 </div>

@@ -15,12 +15,12 @@
                 @endif
                     
                 <div class="links">
-                    <a href="/Webshop/Webshop/public/home">all</a>
-                    <a href="/Webshop/Webshop/public/fire">fire</a>
-                    <a href="/Webshop/Webshop/public/water">water</a>
-                    <a href="/Webshop/Webshop/public/grass">grass</a>
-                    <a href="/Webshop/Webshop/public/flight">flight</a>
-                    <a href="/Webshop/Webshop/public/ghost">ghost</a>
+                    <a href="{{route('home')}}">all</a>
+                    <a href="{{route('category', 'fire')}}">fire</a>
+                    <a href="{{route('category', 'water')}}">water</a>
+                    <a href="{{route('category', 'grass')}}">grass</a>
+                    <a href="{{route('category', 'flight')}}">flight</a>
+                    <a href="{{route('category', 'ghost')}}">ghost</a>
                 </div>
                 <hr>
                 <main class="article">
@@ -38,12 +38,12 @@
                         <div>
                             <div class="w3-right">
                                 <h4>${{$article->price}}</h4>
-                                <button class="w3-btn w3-yellow" onclick="location.href = '/Webshop/Webshop/public/add/{{$article->id}}'">add to cart</button>
+                                <button class="w3-btn w3-yellow" onclick="location.href = '{{route('add',$article->id)}}'">add to cart</button>
                             </div>
                             @if ($item != null)
                                 <div class="w3-display-right">
-                                    <div><button class="btn" onclick="location.href = '/Webshop/Webshop/public/add/{{$article->id}}'">+</button> <p style="text-align: center">{{$item['QTY']}}</p> <button class="btn" onclick="location.href = '/Webshop/Webshop/public/remove/{{$article->id}}'">-</button>
-                                </div>
+                                    <div><button class="btn" onclick="location.href = '{{route('add',$article->id)}}'">+</button> <p style="text-align: center">{{$item['QTY']}}</p> <button class="btn" onclick="location.href = '{{route('remove',$article->id)}}'">-</button>
+                                </div> 
                             @endif
                             
                         </div>
